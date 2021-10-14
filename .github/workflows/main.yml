@@ -36,7 +36,7 @@ jobs:
     - name: Init Airflow
       run: |
         airflow db init
-        RUN airflow users create \
+        airflow users create \
           --username admin \
           --firstname Peter \
           --lastname Parker \
