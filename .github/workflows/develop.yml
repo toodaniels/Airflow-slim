@@ -15,7 +15,7 @@ jobs:
 
     runs-on: ubuntu-latest
     env: 
-      AIRFLOW_HOME: /opt/airflow
+      AIRFLOW_HOME: /Airflow-LocalExecutor/
       AIRFLOW_VERSION: 2.2.0 
       CONSTRAINT_URL: "https://raw.githubusercontent.com/apache/airflow/constraints-2.2.0/constraints-3.9.txt" 
       AIRFLOW__CORE__LOAD_EXAMPLES: False
