@@ -18,9 +18,7 @@ jobs:
     runs-on: ubuntu-latest
     env: 
       AIRFLOW_HOME: /opt/airflow
-      AIRFLOW_VERSION: 2.2.0 
-      PYTHON_VERSION: 3.9
-      CONSTRAINT_URL: "https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt" 
+      CONSTRAINT_URL: "https://raw.githubusercontent.com/apache/airflow/constraints-2.2.0/constraints-3.9.txt" 
       AIRFLOW__CORE__LOAD_EXAMPLES: False
     steps:
     - uses: actions/checkout@v2
