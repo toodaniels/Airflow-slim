@@ -1,0 +1,45 @@
+# This workflow will install Python dependencies, run tests and lint with a single version of Python
+# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
+
+name: Integrity Tests
+
+on:
+  pull_request:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.9
+      uses: actions/setup-python@v2
+      with:
+        python-version: 3.9
+    - name: Install dependencies
+      env: 
+        AIRFLOW_HOME: /opt/airflow
+        AIRFLOW_VERSION: 2.2.0 
+        PYTHON_VERSION: 3.9
+        CONSTRAINT_URL: "https://raw.githubusercontent.com/apache/airflow/constraints-${AIRFLOW_VERSION}/constraints-${PYTHON_VERSION}.txt" 
+        AIRFLOW__CORE__LOAD_EXAMPLES: False
+      run: |
+        python -m pip install --upgrade pip
+        pip install "apache-airflow[postgres,aws,slack,snowflake]==${AIRFLOW_VERSION}" --constraint "${CONSTRAINT_URL}"
+        RUN pip install pytest pytest-helpers-namespace
+        if [ -f requirements.txt ]; then pip install -r requirements.txt; fi
+    - name: Init Airflow
+      run: |
+        airflow db init
+        RUN airflow users create \
+          --username admin \
+          --firstname Peter \
+          --lastname Parker \
+          --role Admin \
+          --email spiderman@superhero.org \
+          --password admin 
+    - name: Test with pytest
+      run: |
+        pytest -vv test/dags/
