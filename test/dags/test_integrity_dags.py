@@ -15,7 +15,4 @@ def test_import_dags(dagbag):
     import_errors = dagbag.import_errors
     msg = f"DAG import failures {import_errors}"
 
-    for dag_id, dag in dagbag.dags.items():
-        LOGGER.info(dag_id)
-
     assert len(import_errors)==0, msg

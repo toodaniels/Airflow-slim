@@ -34,7 +34,7 @@ jobs:
     - name: Init Airflow
       run: |
         airflow db init
-        airflow dags list
     - name: Test with pytest
       run: |
+        airflow dags list
         pytest -o log_cli=true --disable-pytest-warnings test/dags/
