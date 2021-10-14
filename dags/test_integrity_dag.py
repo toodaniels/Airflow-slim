@@ -1,7 +1,7 @@
 from airflow import DAG
 from datetime import datetime
 from airflow.operators.dummy import DummyOperator
-from airflow.operators.python import PythonOperator, FailOperator 
+from airflow.operators.python import PythonOperator#, FailOperator 
 
 args = {
     'owner': 'Daniel',
