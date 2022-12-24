@@ -1,4 +1,4 @@
-FROM apache/airflow:2.1.4 
+FROM apache/airflow:latest-python3.10
 
 WORKDIR /opt/airflow/
 
